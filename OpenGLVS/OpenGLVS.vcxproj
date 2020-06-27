@@ -142,7 +142,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="testOpenGL.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="problem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="problems.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
