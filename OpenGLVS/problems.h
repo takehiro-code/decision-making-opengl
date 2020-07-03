@@ -7,6 +7,9 @@ const int var = 200;
 // Put this include *after* the includes for glew and GLFE!
 #include <stdio.h>
 #include "problems.h"
+#include "vector"
 // #include <unistd.h> // added for the timer part (April 22)
+
+using namespace std;
 
 void problem();
