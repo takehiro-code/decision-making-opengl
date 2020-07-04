@@ -29,5 +29,12 @@
     <ClInclude Include="problems.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vertexShader.vs" />
+    <None Include="fragmentShader.vs" />
   </ItemGroup>
 </Project>

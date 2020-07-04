@@ -17,6 +17,9 @@
 // Put this include *after* the includes for glew and GLFE!
 #include <stdio.h>
 #include <vector>
+#include <fstream>
+#include <sstream>
+#include <string>
 // #include <unistd.h>   // added for the timer part (April 22)
 
 using namespace std;
