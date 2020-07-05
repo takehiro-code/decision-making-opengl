@@ -20,12 +20,14 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <algorithm>
+
 // #include <unistd.h>   // added for the timer part (April 22)
 
 using namespace std;
 
 // function declarations here
 int problem1();
-void problem2();
+int problem2();
 
 #endif
