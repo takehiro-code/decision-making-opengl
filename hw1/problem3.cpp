@@ -1,12 +1,33 @@
 
 #include "problems.h"
-#include "shader.h"
 
-struct Act {
+const float ALPHA = 0.25;
+// for now, the decision matrix only works with integer. Use template to work with float values!
+
+
+// better to use class as ActVector to avoid code duplicate.. too late to change now : (  
+struct Act 
+{
     string label;
     int max;
     int min;
     vector<int> act;
+    float optPsmValue;
+    float PoIValue; // Principal of Insufficient value
+    
+    void getOptPsmValue(float alpha) {
+        this->optPsmValue = this->max * alpha + this->min * (1 - alpha);
+    }
+
+    void getPoIValue() {
+        float size = act.size();
+        float sumValue = 0;
+
+        for (auto value : act) {
+            sumValue += value;
+        }
+        this->PoIValue = sumValue / size;
+    }
 };
 
 
@@ -79,6 +100,9 @@ vector<Act> maximin(vector<vector<int>> vec2d) {
                 bestActVec.push_back(actObj_max);
             }
         }
+        else {
+            bestActVec.push_back(actObj_max);
+        }
     }
     return bestActVec;
 }
@@ -107,6 +131,9 @@ vector<Act> maximax(vector<vector<int>> vec2d) {
                 actObj_max = *it;
                 bestActVec.push_back(actObj_max);
             }
+        }
+        else {
+            bestActVec.push_back(actObj_max);
         }
     }
     return bestActVec;
@@ -138,12 +165,84 @@ vector<Act> minimaxRegret(vector<vector<int>> vec2d) {
 }
 
 
-//void optimismPessimism(vector<vector<int>> vec2d, float alpha) {
-//    
-//    vector<Act> actVec = setupActVec(vec2d);
-//
-//}
+vector<Act> optimismPessimism(vector<vector<int>> vec2d, float alpha) {
+    
+    vector<Act> actVec = setupActVec(vec2d);
+    vector<Act> bestActVec;
 
+    for (int i = 0; i < actVec.size(); i++) {
+        actVec[i].getOptPsmValue(alpha);
+    }
+     
+    //// this one won't work because this doesn't update the actVec!
+    //for (Act act : actVec) {
+    //    act.getOptPsmValue(alpha);
+    //}
+
+    //using iterator to find maximum optPsm value from actVec
+    vector<Act>::iterator it = actVec.begin();
+    Act actObj_max = *it;
+    float current_max = actObj_max.optPsmValue;
+    for (; it != actVec.end(); ++it) {
+        // for the first element, no operation
+        if (it != actVec.begin()) {
+            // if the value is greater than current_max, clear the bestActVec and push_back
+            if ((*it).optPsmValue > current_max) {
+                bestActVec.clear();
+                current_max = (*it).optPsmValue;
+                actObj_max = *it;
+                bestActVec.push_back(actObj_max);
+            }
+            // if the value is equal to the current_max, don't clear but just push back
+            else if ((*it).optPsmValue == current_max) {
+                current_max = (*it).optPsmValue;
+                actObj_max = *it;
+                bestActVec.push_back(actObj_max);
+            }
+        }
+        else {
+            bestActVec.push_back(actObj_max);
+        }
+    }
+    return bestActVec;
+}
+
+
+vector<Act> principleOfInsufficient(vector<vector<int>> vec2d) {
+
+    vector<Act> actVec = setupActVec(vec2d);
+    vector<Act> bestActVec;
+
+    for (int i = 0; i < actVec.size(); i++) {
+        actVec[i].getPoIValue();
+    }
+
+    //using iterator to find maximum optPsm value from actVec
+    vector<Act>::iterator it = actVec.begin();
+    Act actObj_max = *it;
+    float current_max = actObj_max.PoIValue;
+    for (; it != actVec.end(); ++it) {
+        if (it != actVec.begin()) {
+            // if the value is greater than current_max, clear the bestActVec and push_back
+            if ((*it).PoIValue > current_max) {
+                bestActVec.clear();
+                current_max = (*it).PoIValue;
+                actObj_max = *it;
+                bestActVec.push_back(actObj_max);
+            }
+            // if the value is equal to the current_max, don't clear but just push back
+            else if ((*it).PoIValue == current_max) {
+                current_max = (*it).PoIValue;
+                actObj_max = *it;
+                bestActVec.push_back(actObj_max);
+            }
+        }
+        else {
+            bestActVec.push_back(actObj_max);
+        }
+    }
+    return bestActVec;
+}
 
 
 
@@ -155,38 +254,41 @@ void problem3() {
                                { 0,  40, 0,  0  },
                                { 10, 30, 0,  0  } };
     vector<Act> bestActVec;
+    printMatrix(vec2d);
 
     cout << "(a) Using Maximin Rule ..." << endl;
     bestActVec = maximin(vec2d);
-    cout << "Choose act: " << endl;
+    cout << "Choose act(s): " << endl;
     for (Act bestAct : bestActVec) {
         cout << "\t - " << bestAct.label << " with minimum value " << bestAct.min << endl;
     }
 
-    // Using iterator
-    //vector<Act>::iterator it;
-    //for (it = bestActVec.begin(); it != bestActVec.end(); ++it) {
-    //    cout << (*it).label << " with minimum value " << (*it).min << endl;
-    //}
-
     cout << "(b) Using Maximax Rule ..." << endl;
     bestActVec = maximax(vec2d);
-    cout << "Choose act: " << endl;
+    cout << "Choose act(s): " << endl;
     for (Act bestAct : bestActVec) {
         cout << "\t - " << bestAct.label << " with minimum value " << bestAct.max << endl;
     }
 
     cout << "(c) Using Minimax Regret Rule ..." << endl;
     bestActVec = minimaxRegret(vec2d);
-    cout << "Choose act: " << endl;
+    cout << "Choose act(s): " << endl;
     for (Act bestAct : bestActVec) {
         cout << "\t - " << bestAct.label << " with maximum regret value " << bestAct.max << endl;
     }
 
     cout << "(d) Using the optimism-pessimism Rule ..." << endl;
-    //optimismPessimism(vec2d);
+    bestActVec = optimismPessimism(vec2d, ALPHA);
+    cout << "Choose act(s): " << endl;
+    for (Act bestAct : bestActVec) {
+        cout << "\t - " << bestAct.label << " with Optimism-Persimism value " << bestAct.optPsmValue << endl;
+    }
 
-
-
+    cout << "(e) Using the Principal of Insufficient Rule ..." << endl;
+    bestActVec = principleOfInsufficient(vec2d);
+    cout << "Choose act(s): " << endl;
+    for (Act bestAct : bestActVec) {
+        cout << "\t - " << bestAct.label << " with expected value " << bestAct.PoIValue << endl;
+    }
 }
 

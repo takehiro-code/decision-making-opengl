@@ -59,7 +59,7 @@ int problem1() {
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "LearnOpenGL", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Problem 1", nullptr, nullptr);
 
     int screenWidth, screenHeight;
     glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
@@ -114,8 +114,8 @@ int problem1() {
     vector<GLfloat>  circleData = getCircleData(0.5f, 0.5f, 0.2f, numpts);
     
     GLuint VBOs[3], VAOs[3];
-    glGenVertexArrays(3, VAOs); // changed to 1 to 2 if you want to use both arrays defined above
-    glGenBuffers(3, VBOs);  // changed to 1 to 2 or to more if you are using more data sets
+    glGenVertexArrays(3, VAOs); // 3 setups we have
+    glGenBuffers(3, VBOs);  // 3 shape to draw
 
     // triangle setup
     // Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
@@ -154,8 +154,7 @@ int problem1() {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f); // re-set the colour state
         glClear(GL_COLOR_BUFFER_BIT); // filling operation of colour state we re-set
 
-        //glUseProgram(shaderProgram);
-        shaderProgram.use();
+        shaderProgram.use(); // I am using a class Shader
 
 
         // Draw triangle

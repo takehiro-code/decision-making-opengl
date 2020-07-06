@@ -6,8 +6,6 @@
 // Window dimensions to be used in the call-back window size
 const GLuint WIDTH = 800, HEIGHT = 600;
 
-const float PI = 3.14159265359f;
-
 
 // For example 1: using the code provided from the tutorial soring.pdf
 // take reference of vec so that original vector is modified without necessary returning it
@@ -37,11 +35,11 @@ void quicksort(vector<int> &vec, int left, int right) {
 }
 
 
-// get scquare data with w at center point (xc, yc)
+// get scquare data with w at center point (xc, yc) with width w
 vector<GLfloat> getSquareData(GLfloat xc, GLfloat yc, GLfloat w) {
     vector<GLfloat> vec;
 
-    GLfloat r = w / 2; // radius
+    GLfloat r = w / 2; // get radius r of square from w
     // 1st point - lower left
     vec.push_back(xc - r);
     vec.push_back(yc - r);
@@ -74,91 +72,9 @@ void setupSquare(GLuint VAO, GLuint VBO, vector<GLfloat> data) {
 }
 
 
-int problem2() {
-
-	// ------------------------------------------------
-	// set up example 1
-	cout << "Example 1 ..." << endl;
-
-	//One example assume no space between first name and last name
-	string name = "TakehiroTanaka";
-	string sortedName;
-	vector<int> numVec;
-
-
-	// only consider name in upper cases
-	transform(name.begin(), name.end(), name.begin(), ::toupper);
-
-	cout << "Original name: " << name << endl;
-
-	// set number A=1, B=2 .. using ASCII code and subtract 64 to set A starting with 1
-	for (int i = 0; i < name.size(); i++) {
-		numVec.push_back(int(name[i])-64);
-		cout << numVec[i] << "(" << name[i] << ")" << " ";
-	}
-
-	cout << endl << endl;
-
-	//sort it
-	quicksort(numVec, 0, numVec.size()-1);
-	// set number A=1, B=2 .. using ASCII code and subtract 64 to set A starting with 1
-	char c;
-	for (int i = 0; i < numVec.size(); i++) {
-		c = char(numVec[i] + 64); // coverting back to ASCII CHAR with offset 64
-		sortedName.push_back(c);
-		cout << numVec[i] << "(" << c << ")" << " ";
-	}
-
-	cout << endl;
-	cout << "Sorted name: " << sortedName << endl;
-
-
-
-	// ------------------------------------------------
-	// set up example 2
-	cout << endl << endl;
-	cout << "Example 2 ..." << endl;
-    
-    GLfloat userElement;
-    vector<int> userRvec;
-    vector<int> sortedRvec;
-    bool tryAgain;
-    // prompt user defined R value 4 times and push back to the userRvec
-    // basically get 4 int values of vector
-    for (int i = 1; i < 5; i++) {
-        do {
-            tryAgain = false;
-            cin.clear();
-            cin.ignore(INT_MAX, '\n'); // flashing value
-            cout << "Enter the R value "<< i <<" (Enter value only between 0 - 255): ";
-            cin >> userElement;
-            if (userElement < 0 || userElement > 255 || !cin.good()) {
-                cout << "Invalid value. Please Enter the R value between 0 - 255!: " << endl;;
-                tryAgain = true;
-            }
-        } while (tryAgain);
-        userRvec.push_back(userElement);
-    }
-
-    cout << "Original R value vector: ";
-    for (int el : userRvec) {
-        cout << el << " ";
-    }
-
-    cout << endl;
-    // sorting
-    sortedRvec = userRvec;
-    quicksort(sortedRvec, 0, userRvec.size() - 1);
-    cout << "Sorted R value vector: ";
-    for (int el : sortedRvec) {
-        cout << el << " ";
-    }
-    cout << endl;
-    
-
+int drawStack(vector<int> Rvec) {
     // Init GLFW -- initilizaing GLFW library
     glfwInit();
-
 
     // version compatibility with opengl 3.3, core profile, mac computer
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -202,36 +118,22 @@ int problem2() {
     // Set up vertex data (and buffer(s)) and attribute pointers
     Shader shaderProgram("vertexShader.vs", "fragmentShader.vs");
 
+    // stack data (4 squares)
+    vector<GLfloat> squareData1 = getSquareData(0.0f, -0.3f, 0.3f);
+    vector<GLfloat> squareData2 = getSquareData(0.0f, 0.0f, 0.3f);
+    vector<GLfloat> squareData3 = getSquareData(0.0f, 0.3f, 0.3f);
+    vector<GLfloat> squareData4 = getSquareData(0.0f, 0.6f, 0.3f);
 
-    // Original stack data
-    vector<GLfloat> squareData1 = getSquareData(-0.5f, -0.2f, 0.2f);
-    vector<GLfloat> squareData2 = getSquareData(-0.5f, 0.0f, 0.2f);
-    vector<GLfloat> squareData3 = getSquareData(-0.5f, 0.2f, 0.2f);
-    vector<GLfloat> squareData4 = getSquareData(-0.5f, 0.4f, 0.2f);
 
-
-    // Sorted stack data
-    vector<GLfloat> squareData5 = getSquareData(0.5f, -0.2f, 0.2f);
-    vector<GLfloat> squareData6 = getSquareData(0.5f, 0.0f, 0.2f);
-    vector<GLfloat> squareData7 = getSquareData(0.5f, 0.2f, 0.2f);
-    vector<GLfloat> squareData8 = getSquareData(0.5f, 0.4f, 0.2f);
-
-    GLuint VBOs[8], VAOs[8];
-    glGenVertexArrays(8, VAOs); 
-    glGenBuffers(8, VBOs);
+    GLuint VBOs[4], VAOs[4];
+    glGenVertexArrays(4, VAOs);
+    glGenBuffers(4, VBOs);
 
     // orginal stack setup
     setupSquare(VAOs[0], VBOs[0], squareData1);
     setupSquare(VAOs[1], VBOs[1], squareData2);
     setupSquare(VAOs[2], VBOs[2], squareData3);
     setupSquare(VAOs[3], VBOs[3], squareData4);
-
-    // sorted stack setup
-    setupSquare(VAOs[4], VBOs[4], squareData5);
-    setupSquare(VAOs[5], VBOs[5], squareData6);
-    setupSquare(VAOs[6], VBOs[6], squareData7);
-    setupSquare(VAOs[7], VBOs[7], squareData8);
-
 
     // unbind all
     glBindBuffer(GL_ARRAY_BUFFER, 0); // Note that this is allowed, the call to glVertexAttribPointer registered VBO as the currently bound vertex buffer object so afterwards we can safely unbind
@@ -254,15 +156,8 @@ int problem2() {
         //drawing original stack
         for (int i = 0; i < 4; i++) {
             // set colour here but may not be the best way performance wise...
-            shaderProgram.setColor("userDefinedColor", (float)userRvec[i] / 255, 0.0f, 0.0f, 1.0f);
+            shaderProgram.setColor("userDefinedColor", (float) Rvec[i] / 255, 0.0f, 0.0f, 1.0f);
             glBindVertexArray(VAOs[i]);
-            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4); // 4 vetexes
-        }
-
-        //drawing original stack
-        for (int i = 0; i < 4; i++) {
-            shaderProgram.setColor("userDefinedColor", (float)sortedRvec[i] / 255, 0.0f, 0.0f, 1.0f);
-            glBindVertexArray(VAOs[i+4]);
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4); // 4 vetexes
         }
 
@@ -276,12 +171,101 @@ int problem2() {
     }
 
     // Properly de-allocate all resources once they've outlived their purpose
-    glDeleteVertexArrays(8, VAOs);
-    glDeleteBuffers(8, VBOs);
+    glDeleteVertexArrays(4, VAOs);
+    glDeleteBuffers(4, VBOs);
 
     // Terminate GLFW, clearing any resources allocated by GLFW.
     glfwTerminate();
 
     return EXIT_SUCCESS;
+}
 
+
+void problem2() {
+
+    // ----------------------------------------------------------------------------------
+    // set up example 1
+    // ----------------------------------------------------------------------------------
+	cout << "Example 1 ..." << endl;
+
+	//One example - assume no space between first name and last name
+	string name = "TakehiroTanaka";
+	string sortedName;
+	vector<int> numVec;
+
+
+	// only consider name in upper cases
+	transform(name.begin(), name.end(), name.begin(), ::toupper);
+
+	cout << "Original name: " << name << endl;
+
+	// set number A=1, B=2 .. using ASCII code and subtract 64 to set A starting with 1
+	for (int i = 0; i < name.size(); i++) {
+		numVec.push_back(int(name[i])-64);
+		cout << numVec[i] << "(" << name[i] << ")" << " ";
+	}
+
+	cout << endl << endl;
+
+	//sort it
+	quicksort(numVec, 0, numVec.size()-1);
+	// set number A=1, B=2 .. using ASCII code and subtract 64 to set A starting with 1
+	char c;
+	for (int i = 0; i < numVec.size(); i++) {
+		c = char(numVec[i] + 64); // coverting back to ASCII CHAR with offset 64
+		sortedName.push_back(c);
+		cout << numVec[i] << "(" << c << ")" << " ";
+	}
+
+	cout << endl;
+	cout << "Sorted name: " << sortedName << endl;
+
+
+    // ----------------------------------------------------------------------------------
+	// set up example 2
+    // ----------------------------------------------------------------------------------
+	cout << endl << endl;
+	cout << "Example 2 ... Press Enter to continue ..." << endl;
+    
+    GLfloat userElement;
+    vector<int> userRvec;
+    vector<int> sortedRvec;
+    bool tryAgain;
+    // prompt user defined R value 4 times and push back to the userRvec
+    // basically get 4 int values of vector
+    for (int i = 1; i < 5; i++) {
+        do {
+            tryAgain = false;
+            cin.clear();
+            cin.ignore(INT_MAX, '\n'); // flashing value
+            cout << "Enter the R value "<< i <<" (Enter value only between 0 - 255): ";
+            cin >> userElement;
+            if (userElement < 0 || userElement > 255 || !cin.good()) {
+                cout << "Invalid value. Please Enter the R value between 0 - 255!: " << endl;;
+                tryAgain = true;
+            }
+        } while (tryAgain);
+        userRvec.push_back(userElement);
+    }
+
+    // Original value  ----------------------------------------
+    cout << "Original R value vector: ";
+    for (int el : userRvec) {
+        cout << el << " ";
+    }
+    cout << endl << "Drawing original stack ... " << endl;
+    drawStack(userRvec);
+    cout << endl;
+
+
+    // sorting ----------------------------------------
+    cout << "Sorting R value ..." << endl;
+    sortedRvec = userRvec;
+    quicksort(sortedRvec, 0, userRvec.size() - 1);
+    cout << "Sorted R value vector: ";
+    for (int el : sortedRvec) {
+        cout << el << " ";
+    }
+    cout << endl << "Drawing sorted stack ... " << endl;
+    drawStack(sortedRvec);
 }
