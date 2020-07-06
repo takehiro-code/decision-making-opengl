@@ -21,6 +21,7 @@
 #include <sstream>
 #include <string>
 #include <algorithm>
+#include <unordered_map>
 
 // #include <unistd.h>   // added for the timer part (April 22)
 
@@ -29,5 +30,6 @@ using namespace std;
 // function declarations here
 int problem1();
 int problem2();
+void problem3();
 
 #endif
