@@ -27,6 +27,15 @@
     <ClCompile Include="problem3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="problem4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="problem5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="problem6.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="problems.h">
