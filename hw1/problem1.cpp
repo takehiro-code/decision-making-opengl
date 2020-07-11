@@ -90,7 +90,7 @@ int problem1() {
 
     // now drawing start here ----------------------------------------------
     // Set up vertex data (and buffer(s)) and attribute pointers
-    Shader shaderProgram("vertexShader.vs", "fragmentShader.vs");
+    Shader shaderProgram("vShader.glsl", "fShader.glsl");
 
     // 1. get triangle data center at (0, 0)
     GLfloat triangleData[] =

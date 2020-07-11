@@ -116,7 +116,7 @@ int drawStack(vector<int> Rvec) {
 
     // now drawing start here ----------------------------------------------
     // Set up vertex data (and buffer(s)) and attribute pointers
-    Shader shaderProgram("vertexShader.vs", "fragmentShader.vs");
+    Shader shaderProgram("vShader.glsl", "fShader.glsl");
 
     // stack data (4 squares)
     vector<GLfloat> squareData1 = getSquareData(0.0f, -0.3f, 0.3f);
