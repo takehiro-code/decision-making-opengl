@@ -163,7 +163,7 @@ int problem1() {
         glBindVertexArray(VAOs[0]);
         glDrawArrays(GL_TRIANGLES, 0, 3); // 3 vetexes
 
-        // Draw triangle
+        // Draw Square
         shaderProgram.setColor("userDefinedColor", 0.0f, 1.0f, 0.0f, 1.0f);
         glBindVertexArray(VAOs[1]);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4); // 4 vetexes

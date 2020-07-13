@@ -116,13 +116,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/../External Resources/GLEW/include;$(SolutionDir)/../External Resources/GLFW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../External Resources/freetype-2.10.2/include;$(SolutionDir)/../External Resources/glm;$(SolutionDir)/../External Resources/GLEW/include;$(SolutionDir)/../External Resources/GLFW/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)/../External Resources/GLEW/lib/Release/x64;$(SolutionDir)/../External Resources/GLFW/lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../External Resources/freetype-2.10.2/objs/x64/Release;$(SolutionDir)/../External Resources/GLEW/lib/Release/x64;$(SolutionDir)/../External Resources/GLFW/lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -153,10 +153,13 @@
   <ItemGroup>
     <ClInclude Include="problems.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="textRender.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fShader.glsl" />
+    <None Include="fsText.glsl" />
     <None Include="vShader.glsl" />
+    <None Include="vsText.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
