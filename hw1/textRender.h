@@ -1,4 +1,4 @@
-#include "problems.h"
+#include "main.h"
 #include "shader.h"
 
 #include <glm/glm.hpp>

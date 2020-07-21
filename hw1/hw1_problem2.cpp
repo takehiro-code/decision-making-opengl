@@ -1,5 +1,5 @@
 
-#include "problems.h"
+#include "main.h"
 #include "shader.h"
 
 
@@ -85,7 +85,7 @@ int drawStack(vector<int> Rvec) {
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Problem 2 - Example 2", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "HW1 Problem 2 - Example 2", nullptr, nullptr);
 
     int screenWidth, screenHeight;
     glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
@@ -181,7 +181,7 @@ int drawStack(vector<int> Rvec) {
 }
 
 
-void problem2() {
+void hw1_problem2() {
 
     // ----------------------------------------------------------------------------------
     // set up example 1

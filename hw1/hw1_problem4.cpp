@@ -1,10 +1,10 @@
-#include "problems.h"
+#include "main.h"
 #include "shader.h"
 
 
 
 
 
-void problem4() {
+void hw1_problem4() {
 	cout << "Not sure yet!" << endl;
 }

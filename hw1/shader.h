@@ -1,6 +1,6 @@
 #pragma once
 
-#include "problems.h"
+#include "main.h"
 
 // Learned from this tutorial: https://learnopengl.com/Getting-started/Shaders
 

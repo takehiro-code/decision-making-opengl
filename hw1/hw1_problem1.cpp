@@ -1,5 +1,5 @@
 
-#include "problems.h"
+#include "main.h"
 #include "shader.h"
 
 // Define constant varibles here instead of header files to avoid compiling/linking issue 
@@ -44,7 +44,7 @@ vector<GLfloat> getCircleData(GLfloat xc, GLfloat yc, GLfloat r, int numVerts) {
 }
 
 
-int problem1() {
+int hw1_problem1() {
 
     // Init GLFW -- initilizaing GLFW library
     glfwInit();
@@ -59,7 +59,7 @@ int problem1() {
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Problem 1", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "HW1 Problem 1", nullptr, nullptr);
 
     int screenWidth, screenHeight;
     glfwGetFramebufferSize(window, &screenWidth, &screenHeight);

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef PROBLEMS_H    // To make sure you don't declare the function more than once by including the header multiple times.
-#define PROBLEMS_H
+#ifndef MAIN_H    // To make sure you don't declare the function more than once by including the header multiple times.
+#define MAIN_H
 
 #include <iostream>
 
@@ -28,11 +28,11 @@
 using namespace std;
 
 // function declarations here
-int problem1();
-void problem2();
-void problem3();
-void problem4();
-void problem5();
-void problem6();
+int hw1_problem1();
+void hw1_problem2();
+void hw1_problem3();
+void hw1_problem4();
+void hw1_problem5();
+void hw1_problem6();
 
 #endif

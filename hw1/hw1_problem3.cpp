@@ -1,5 +1,5 @@
 
-#include "problems.h"
+#include "main.h"
 
 const float ALPHA = 0.25;
 // for now, the decision matrix only works with integer. Use template to work with float values!
@@ -246,7 +246,7 @@ vector<Act> principleOfInsufficient(vector<vector<int>> vec2d) {
 
 
 
-void problem3() {
+void hw1_problem3() {
 
     //2d vector
     vector<vector<int> > vec2d{ { 20, 20, 0,  10 },

@@ -1,4 +1,4 @@
-#include "problems.h"
+#include "main.h"
 #include "shader.h"
 #include "textRender.h"
 
@@ -100,7 +100,7 @@ int visualization(vector<vector<string>> vec2dStr, vector<vector<string>>  MSNEs
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Problem 6 Visualization", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "HW1 Problem 6 Visualization", nullptr, nullptr);
 
 	int screenWidth, screenHeight;
 	glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
@@ -237,7 +237,7 @@ void dataToString(vector<vector<pair<int, int>> > vec2d, vector<vector<float>> M
 }
 
 
-void problem6() {
+void hw1_problem6() {
 	vector<vector<pair<int, int>> > vec2d = 
 	{ { {2, -3},	{1, 2} },
 	  { {1,  1},	{4, -1} } };

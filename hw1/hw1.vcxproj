@@ -143,15 +143,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="problem1.cpp" />
-    <ClCompile Include="problem2.cpp" />
-    <ClCompile Include="problem3.cpp" />
-    <ClCompile Include="problem4.cpp" />
-    <ClCompile Include="problem5.cpp" />
-    <ClCompile Include="problem6.cpp" />
+    <ClCompile Include="hw1_problem1.cpp" />
+    <ClCompile Include="hw1_problem2.cpp" />
+    <ClCompile Include="hw1_problem3.cpp" />
+    <ClCompile Include="hw1_problem4.cpp" />
+    <ClCompile Include="hw1_problem5.cpp" />
+    <ClCompile Include="hw1_problem6.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="problems.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="textRender.h" />
   </ItemGroup>

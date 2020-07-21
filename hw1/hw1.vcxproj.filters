@@ -18,33 +18,33 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="problem1.cpp">
+    <ClCompile Include="hw1_problem1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="problem2.cpp">
+    <ClCompile Include="hw1_problem2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="problem3.cpp">
+    <ClCompile Include="hw1_problem3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="problem4.cpp">
+    <ClCompile Include="hw1_problem4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="problem5.cpp">
+    <ClCompile Include="hw1_problem5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="problem6.cpp">
+    <ClCompile Include="hw1_problem6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="problems.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="textRender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

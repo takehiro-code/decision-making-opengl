@@ -1,4 +1,4 @@
-#include "problems.h"
+#include "main.h"
 
 typedef vector<vector<pair<int, int>> > Vec2d;
 typedef vector< pair<int, int> > Row; // e.g. row {(2,3), (3,5)}
@@ -170,7 +170,7 @@ public:
 };
 
 
-void problem5() {
+void hw1_problem5() {
 
 	// Prisoner Dillenma Matrix
 	Vec2d vec2d =
