@@ -36,6 +36,9 @@
     <ClCompile Include="hw1_problem6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hw2_problem1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
