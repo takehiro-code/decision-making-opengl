@@ -149,7 +149,10 @@
     <ClCompile Include="hw1_problem5.cpp" />
     <ClCompile Include="hw1_problem6.cpp" />
     <ClCompile Include="hw2_problem1.cpp" />
+    <ClCompile Include="hw2_problem2.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="opengl.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />

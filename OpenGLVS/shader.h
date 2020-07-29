@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SHADER_H
+#define SHADER_H
 
 #include "main.h"
 
@@ -113,3 +114,5 @@ public:
 		glUniform4f(vertexColorLocation, RValue, GValue, BValue, Avalue);
 	}
 };
+
+#endif

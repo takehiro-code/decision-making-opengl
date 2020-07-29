@@ -1,4 +1,3 @@
-#pragma once
 #ifndef MAIN_H    // To make sure you don't declare the function more than once by including the header multiple times.
 #define MAIN_H
 
@@ -36,6 +35,11 @@ void hw1_problem5();
 void hw1_problem6();
 
 void hw2_problem1();
+int hw2_problem2();
+
+// user defined functions
+int glinit(GLFWwindow*& window, int width, int height, const char* title);
+void setupVAOVBO(GLuint VAO, GLuint VBO, vector<float> data);
 
 
 #endif

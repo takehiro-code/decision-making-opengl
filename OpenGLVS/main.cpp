@@ -1,8 +1,15 @@
 
 #include "main.h"
 
-const bool HW1 = true;
+const bool HW1 = false;
 const bool HW2 = true;
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 
 // The MAIN function that runs from HW1 problem 1 to problem 6
@@ -50,6 +57,10 @@ int main()
 	if (HW2) {
 		cout << "HW2 Program starts ..." << endl;
 
+		cout << "Press Enter to start HW2 problem 1 ..." << endl;
+		//cin.get();
+		hw2_problem1();
+		cout << endl << endl;
 	}
 
 
