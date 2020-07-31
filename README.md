@@ -8,7 +8,14 @@ glm version: 0.9.9.8 (header file only)
 FreeType version: 2.10.2 (compile on my own from visual studio 2019)
 Visual Studio 2019 Community Version with x64
 
+##### Extension (Optional):
+Install Markdown Editor Extension in the Visual Studio to modify/preview the markdown file.
+
 ##### Instruction Setup:
+
+glfw, glew setup:
+Follow this youtube: https://www.youtube.com/watch?v=gCkcP0GcCe0
+
 glm setup:
 1. Download zip file from https://github.com/g-truc/glm/tags
 2. Extract it to any place as a folder "glm/".

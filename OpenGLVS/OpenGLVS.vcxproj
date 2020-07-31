@@ -148,8 +148,8 @@
     <ClCompile Include="hw1_problem4.cpp" />
     <ClCompile Include="hw1_problem5.cpp" />
     <ClCompile Include="hw1_problem6.cpp" />
-    <ClCompile Include="hw2_problem1.cpp" />
-    <ClCompile Include="hw2_problem2.cpp" />
+    <ClCompile Include="hw2_problem123.cpp" />
+    <ClCompile Include="hw2_problem4.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="opengl.cpp" />
     <ClCompile Include="test.cpp" />
@@ -160,6 +160,8 @@
     <ClInclude Include="textRender.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\DiscussionAndResult\DiscussionAndResult.md" />
+    <None Include="..\README.md" />
     <None Include="fShader.glsl" />
     <None Include="fsText.glsl" />
     <None Include="vShader.glsl" />

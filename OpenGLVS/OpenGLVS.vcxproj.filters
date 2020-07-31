@@ -36,16 +36,16 @@
     <ClCompile Include="hw1_problem6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hw2_problem1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hw2_problem2.cpp">
+    <ClCompile Include="opengl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="opengl.cpp">
+    <ClCompile Include="hw2_problem123.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hw2_problem4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,5 +65,7 @@
     <None Include="fsText.glsl" />
     <None Include="vShader.glsl" />
     <None Include="vsText.glsl" />
+    <None Include="..\DiscussionAndResult\DiscussionAndResult.md" />
+    <None Include="..\README.md" />
   </ItemGroup>
 </Project>

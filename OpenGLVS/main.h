@@ -34,8 +34,7 @@ void hw1_problem4();
 void hw1_problem5();
 void hw1_problem6();
 
-void hw2_problem1();
-int hw2_problem2();
+void hw2_problem123();
 
 // user defined functions
 int glinit(GLFWwindow*& window, int width, int height, const char* title);
