@@ -239,7 +239,7 @@ float getBhattacharyya(vector<float> data1, vector<float> data2) {
 
 
 
-int drawHw2p1(vector<float> data, const char* title) {
+int drawHistGaussian(vector<float> data, const char* title) {
     GLFWwindow* window;
     int EXIT_STAUTS1 = glinit(window, WIDTH, HEIGHT, title);
     if (EXIT_STAUTS1 == EXIT_FAILURE) {
@@ -361,10 +361,10 @@ void getHistData(vector<float> data, int i, int j, int size,
 
 
     // define normalization range
-    float ax = -1.0f + i * 2.0f / (float)size;
-    float bx = -1.0f + (i + 1) * 2.0f / (float)size;
-    float ay = 1.0f - (j+1) * 2.0f / (float)size;
-    float by = 1.0f - j * 2.0f / (float)size;
+    float ax = -1.0f + j * 2.0f / (float)size;
+    float bx = -1.0f + (j + 1) * 2.0f / (float)size;
+    float ay = 1.0f - (i+1) * 2.0f / (float)size;
+    float by = 1.0f - i * 2.0f / (float)size;
 
     for (int i = 0; i < hist.size(); i++) {
         histBin bi = hist[i];
@@ -410,10 +410,10 @@ void getScatterData(vector<float> data1, vector<float> data2, int i, int j, int 
     ymax = *max_element(data2.begin(), data2.end());
 
     // define normalization range
-    float ax = -1.0f + i * 2.0f / (float)size;
-    float bx = -1.0f + (i + 1) * 2.0f / (float)size;
-    float ay = 1.0f - (j + 1) * 2.0f / (float)size;
-    float by = 1.0f - j * 2.0f / (float)size;
+    float ax = -1.0f + j * 2.0f / (float)size;
+    float bx = -1.0f + (j + 1) * 2.0f / (float)size;
+    float ay = 1.0f - (i + 1) * 2.0f / (float)size;
+    float by = 1.0f - i * 2.0f / (float)size;
     // cout << ax << "," << bx << "," << ay << "," << by << endl;
 
     int numPts = data1.size();
@@ -427,6 +427,61 @@ void getScatterData(vector<float> data1, vector<float> data2, int i, int j, int 
         scatData.push_back(0.0f);
     }
 }
+
+
+void getRegressionLine(vector<float> x, vector<float> y, int i, int j, int size,
+                                vector<float> &regLineData, float &c0, float &c1){
+    // get xmin, xmax, ymin, ymax
+    float xmin = *min_element(x.begin(), x.end());
+    float xmax = *max_element(x.begin(), x.end());
+    float ymin = *min_element(y.begin(), y.end());
+    float ymax = *max_element(y.begin(), y.end());
+
+    // define normalization range
+    float ax = -1.0f + j * 2.0f / (float)size;
+    float bx = -1.0f + (j + 1) * 2.0f / (float)size;
+    float ay = 1.0f - (i + 1) * 2.0f / (float)size;
+    float by = 1.0f - i * 2.0f / (float)size;
+
+    // get coefficient for c0 and c1 such that y = c0 + c1 * x
+    // Psudo code below.
+    // c1 = sum( (yi - meanY) * (xi - meanX)) / (xi - meanX)^2;
+    // c0 = meanY - c1 * meanX;
+
+    float meanX = computeMean(x);
+    float meanY = computeMean(y);
+
+    int numPts = x.size();
+
+    float numerator = 0;
+    float denominator = 0;
+    for (int i = 0; i < x.size(); i++) {
+        numerator = numerator + (y[i] - meanY) * (x[i] - meanX);
+        denominator = denominator + (x[i] - meanX) * (x[i] - meanX);
+    }
+    c1 = numerator / denominator;
+    c0 = meanY - c1 * meanX;
+
+    // now create the regressin line vertex data, basically 2 vertex point
+    float xminNorm = normalize(xmin, xmin, xmax, ax, bx);
+    float yminFitNorm = normalize(c0 + c1 * xmin, ymin, ymax, ay, by);
+    
+    float xmaxNorm = normalize(xmax, xmin, xmax, ax, bx);
+    float Yfitxmax = normalize(c0 + c1 * xmax, ymin, ymax, ay, by);
+
+    regLineData.push_back(xminNorm);
+    regLineData.push_back(yminFitNorm);
+    regLineData.push_back(0.0f);
+
+    regLineData.push_back(xmaxNorm);
+    regLineData.push_back(Yfitxmax);
+    regLineData.push_back(0.0f);
+
+    //cout << xminNorm << "," << yminFitNorm << endl;
+    //cout << xmaxNorm << "," << Yfitxmax << endl;
+
+}
+
 
 
 vector<float> getScatterGridData(int size) {
@@ -461,11 +516,10 @@ vector<float> getScatterGridData(int size) {
 
     }
     return gridData;
-     
 }
 
 
-int drawHw2p2(vector<vector<float>> alldata, const char* title) {
+int drawScatterMatrix(vector<vector<float>> alldata, const char* title, bool regressionFlag) {
     int size = alldata.size();
 
     GLFWwindow* window;
@@ -483,7 +537,8 @@ int drawHw2p2(vector<vector<float>> alldata, const char* title) {
     vector<float> gridData = getScatterGridData(size);
     vector<vector<float>> allHistData;
     vector<vector<float>> allScatData;
-    vector<float> allxmin, allxmax, allymin, allymax;
+    vector<vector<float>> allRegLineData;
+    vector<float> allxmin, allxmax, allymin, allymax, allc0, allc1;
 
     // looping through row and col of scatter matrix and poluate the plot data
     for (int i = 0; i < size; i++) {
@@ -500,6 +555,16 @@ int drawHw2p2(vector<vector<float>> alldata, const char* title) {
                 vector<float> scatData;
                 getScatterData(data1, data2, i, j, size, scatData, xmin, xmax, ymin, ymax);
                 allScatData.push_back(scatData);
+
+                if (regressionFlag) {
+                    vector<float> regLineData;
+                    float c0, c1;
+                    getRegressionLine(data1, data2, i, j, size, regLineData, c0, c1);
+                    allRegLineData.push_back(regLineData);
+                    allc0.push_back(c0);
+                    allc1.push_back(c1);
+                    //cout << c0 << ", " << c1 << endl;
+                }
             }
 
             // I don't use these for text render xmin, xmax, ymin, ymax at the moment, because it will look ugly...
@@ -535,6 +600,17 @@ int drawHw2p2(vector<vector<float>> alldata, const char* title) {
         setupVAOVBO(scatVAOs[i], scatVBOs[i], allScatData[i]);
     }
 
+    // set up for regression line if flag is true
+    int numRegData = allRegLineData.size();
+    vector<GLuint> regVBOs(numRegData), regVAOs(numRegData);
+    if (regressionFlag) {
+        glGenVertexArrays(numRegData, &regVAOs[0]);
+        glGenBuffers(numRegData, &regVBOs[0]);
+        for (int i = 0; i < allRegLineData.size(); i++) {
+            setupVAOVBO(regVAOs[i], regVBOs[i], allRegLineData[i]);
+        }
+    }
+
     setupVAOVBO(gridVAO, gridVBO, gridData);
 
     // unbind all
@@ -565,6 +641,15 @@ int drawHw2p2(vector<vector<float>> alldata, const char* title) {
             glDrawArrays(GL_POINTS, 0, allScatData[i].size() / 3);
         }
 
+        //draw regression line
+        if (regressionFlag) {
+            for (int i = 0; i < allRegLineData.size(); i++) {
+                shaderProgram.setColor("userDefinedColor", 1.0f, 0.0f, 0.0f, 1.0f);
+                glBindVertexArray(regVAOs[i]);
+                glDrawArrays(GL_LINES, 0, allRegLineData[i].size() / 3);
+            }
+        }
+
         // draw gridData
         shaderProgram.setColor("userDefinedColor", 0.3f, 0.3f, 0.3f, 1.0f);
         glBindVertexArray(gridVAO);
@@ -574,6 +659,7 @@ int drawHw2p2(vector<vector<float>> alldata, const char* title) {
         glBindVertexArray(0);
 
         // render text
+        int index = 0; // index for looping allc0 and allc1
         for (int i = 0; i < size; i++) {
             vector<float> data1 = alldata[i];
             for (int j = 0; j < size; j++) {   
@@ -586,10 +672,10 @@ int drawHw2p2(vector<vector<float>> alldata, const char* title) {
                 float ay = 0.0f;
                 float by = HEIGHT;
 
-                float xmin = -1.0f + i * 2.0f / (float)size;
-                float xmax = -1.0f + (i + 1) * 2.0f / (float)size;
-                float ymin = 1.0f - (j + 1) * 2.0f / (float)size;
-                float ymax = 1.0f - j * 2.0f / (float)size;
+                float xmin = -1.0f + j * 2.0f / (float)size;
+                float xmax = -1.0f + (j + 1) * 2.0f / (float)size;
+                float ymin = 1.0f - (i + 1) * 2.0f / (float)size;
+                float ymax = 1.0f - i * 2.0f / (float)size;
 
                 // obtain the location within the cell of matrix
                 float xloc1 = normalize(xmax - 0.35f, -1.0f, 1.0f, ax, bx);
@@ -597,17 +683,54 @@ int drawHw2p2(vector<vector<float>> alldata, const char* title) {
                 float xloc2 = normalize(xmax - 0.35f, -1.0f, 1.0f, ax, bx);
                 float yloc2 = normalize(ymax - 0.05f, -1.0f, 1.0f, ay, by);
 
+                // for the plot title
+                float xloc_title = normalize(xmin, -1.0f, 1.0f, ax, bx);
+                float yloc_title = normalize(ymax - 0.025f, -1.0f, 1.0f, ay, by);
+                string data1title;
+                string data2title;
+                if (i == 0) {
+                    data1title = "latitude";
+                }
+                else if (i == 1) {
+                    data1title = "longitude";
+                }
+                else {
+                    data1title = "depth";
+                }
+
+                if (j == 0) {
+                    data2title = "latitude";
+                }
+                else if (j == 1) {
+                    data2title = "longitude";
+                }
+                else {
+                    data2title = "depth";
+                }
+
                 if (i == j) {
                     float mean = computeMean(data1);
                     float variance = computeVariance(data1);
                     textRenderProgram.RenderText("mean = " + to_string(mean), xloc1, yloc1, 0.3f, glm::vec3(0.9f, 0.9f, 0.9f));
                     textRenderProgram.RenderText("variance = " + to_string(variance), xloc2, yloc2, 0.3f, glm::vec3(0.9f, 0.9f, 0.9f));
+                    textRenderProgram.RenderText(data1title, xloc_title, yloc_title, 0.3f, glm::vec3(0.0f, 0.8f, 0.0f));
+
                 }
                 else {
                     float covariance = computeCovariance(data1, data2);
                     float correlation = computeCorrelation(data1, data2);
                     textRenderProgram.RenderText("correlation = " + to_string(correlation), xloc1, yloc1, 0.3f, glm::vec3(0.9f, 0.9f, 0.9f));
                     textRenderProgram.RenderText("covariance = " + to_string(covariance), xloc2, yloc2, 0.3f, glm::vec3(0.9f, 0.9f, 0.9f));
+                    textRenderProgram.RenderText(data1title + " vs " + data2title, xloc_title, yloc_title, 0.3f, glm::vec3(0.0f, 0.8f, 0.0f));
+
+
+                    if (regressionFlag) {
+                        float xloc3 = normalize(xmax - 0.45f, -1.0f, 1.0f, ax, bx);
+                        float yloc3 = normalize(ymax - 0.085f, -1.0f, 1.0f, ay, by);
+                        string eqn = "y = " + to_string(allc1[index]) + " * x" + " + " + to_string(allc0[index]);
+                        textRenderProgram.RenderText(eqn, xloc3, yloc3, 0.3f, glm::vec3(1.0f, 0.0f, 0.0f));
+                        index++;
+                    }
                 }
             }
         }
@@ -622,6 +745,11 @@ int drawHw2p2(vector<vector<float>> alldata, const char* title) {
     glDeleteBuffers(numScatData, &scatVBOs[0]);
     glDeleteVertexArrays(1, &gridVAO);
     glDeleteBuffers(1, &gridVBO);
+
+    if (regressionFlag) {
+        glDeleteVertexArrays(numRegData, &scatVAOs[0]);
+        glDeleteBuffers(numRegData, &scatVBOs[0]);
+    }
 
     // Terminate GLFW, clearing any resources allocated by GLFW.
     glfwTerminate();
@@ -680,11 +808,11 @@ void hw2_problem123() {
 
     // draw two histograms with gaussian distribution
     cout << "Visualizing latitude data ..." << endl;
-    drawHw2p1(latitude, "HW2 Problem 1 - Latitude");
+    drawHistGaussian(latitude, "HW2 Problem 1 - Latitude");
     cout << "Visualizing longitude data ..." << endl;
-    drawHw2p1(longitude, "HW2 Problem 1 - Longitude");
-    //cout << "Visualizing depth data ..." << endl;
-    //drawHw2p1(depth, "HW2 Problem 1 - Depth");
+    drawHistGaussian(longitude, "HW2 Problem 1 - Longitude");
+    cout << "Visualizing depth data ..." << endl;
+    drawHistGaussian(depth, "HW2 Problem 1 - Depth");
 
 
     cout << "Compute Bhatacharrya Coefficient ..." << endl;
@@ -701,9 +829,9 @@ void hw2_problem123() {
     //cout << "Press Enter to start HW2 problem 2 ..." << endl;
     //cin.get();
     //cout << endl << endl;
-    vector<vector<float>> alldata = { latitude, longitude, depth };
+    vector<vector<float>> alldata = { latitude, longitude, depth};
     cout << "Visualizing Scatter Matrix of latitude, longitude, depth ..." << endl;
-    drawHw2p2(alldata, "HW2 Problem 2 - Scatter Matrix");
+    drawScatterMatrix(alldata, "HW2 Problem 2 - Scatter Matrix", false);
 
     // following is computationally repetitive just for printing into the console ... 
     cout << endl << "printing covariance matrix ..." << endl;
@@ -716,8 +844,9 @@ void hw2_problem123() {
         }
         cout << endl;
     }
+    cout << endl << endl;
 
-    cout << endl << "printing correlation matrix ..." << endl;
+    cout << "printing correlation matrix ..." << endl;
     for (int i = 0; i < alldata.size(); i++) {
         vector<float> data1 = alldata[i];
         for (int j = 0; j < alldata.size(); j++) {
@@ -728,9 +857,12 @@ void hw2_problem123() {
         cout << endl;
     }
 
-
+    cout << endl << endl;
     // -----------------------------------------------------------------------------------------
     // HW2 Problem 3
     // -----------------------------------------------------------------------------------------
-
+    cout << "Draw Regression Line on the plot ..." << endl;
+    drawScatterMatrix(alldata, "HW2 Problem 2 - Scatter Matrix with Regression Lines", true);
+    cout << "HW Problem 1 & 2 & 3 ends ..." << endl;
+    cout << endl << endl;
 }
