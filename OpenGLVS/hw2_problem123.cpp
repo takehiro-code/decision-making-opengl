@@ -766,7 +766,7 @@ void hw2_problem123() {
 
     cout << "Processing HW2 dataset ..." << endl;
     // read the data - 3 columns
-    ifstream  data("Japan earthquakes 2001 - 2018.csv");
+    ifstream  data("../data/Japan earthquakes 2001 - 2018.csv");
 
     vector <float> latitude;
     vector <float> longitude;
@@ -834,7 +834,7 @@ void hw2_problem123() {
     drawScatterMatrix(alldata, "HW2 Problem 2 - Scatter Matrix", false);
 
     // following is computationally repetitive just for printing into the console ... 
-    cout << endl << "printing covariance matrix ..." << endl;
+    cout << endl << "Printing covariance matrix ..." << endl;
     for (int i = 0; i < alldata.size(); i++) {
         vector<float> data1 = alldata[i];
         for (int j = 0; j < alldata.size(); j++) {
@@ -846,7 +846,7 @@ void hw2_problem123() {
     }
     cout << endl << endl;
 
-    cout << "printing correlation matrix ..." << endl;
+    cout << "Printing correlation matrix ..." << endl;
     for (int i = 0; i < alldata.size(); i++) {
         vector<float> data1 = alldata[i];
         for (int j = 0; j < alldata.size(); j++) {
@@ -862,7 +862,7 @@ void hw2_problem123() {
     // HW2 Problem 3
     // -----------------------------------------------------------------------------------------
     cout << "Draw Regression Line on the plot ..." << endl;
-    drawScatterMatrix(alldata, "HW2 Problem 2 - Scatter Matrix with Regression Lines", true);
+    drawScatterMatrix(alldata, "HW2 Problem 3 - Scatter Matrix with Regression Lines", true);
     cout << "HW Problem 1 & 2 & 3 ends ..." << endl;
     cout << endl << endl;
 }

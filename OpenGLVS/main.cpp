@@ -57,9 +57,15 @@ int main()
 	if (HW2) {
 		cout << "HW2 Program starts ..." << endl;
 
+		//cout << "Press Enter to start HW2 problem 1 & 2 & 3 ..." << endl;
+		//cin.get();
+		//hw2_problem123();
+		//cout << endl << endl;
+
+
 		cout << "Press Enter to start HW2 problem 1 & 2 & 3 ..." << endl;
-		cin.get();
-		hw2_problem123();
+		//cin.get();
+		hw2_problem4();
 		cout << endl << endl;
 	}
 

@@ -35,10 +35,11 @@ void hw1_problem5();
 void hw1_problem6();
 
 void hw2_problem123();
+void hw2_problem4();
 
-// user defined functions
-int glinit(GLFWwindow*& window, int width, int height, const char* title);
-void setupVAOVBO(GLuint VAO, GLuint VBO, vector<float> data);
-
+// user defined functions in opengl.cpp
+int glinit(GLFWwindow*& window, int width, int height, const char* title); // creating windows and load glfw, glew
+void setupVAOVBO(GLuint VAO, GLuint VBO, vector<float> data); //setup of VAO, VBO only position
+void setupTextureVAOVBO(GLuint VAO, GLuint VBO, vector<float> data); // setup of VAO, VBO for position and texture
 
 #endif

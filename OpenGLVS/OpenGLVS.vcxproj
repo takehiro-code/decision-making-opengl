@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -157,15 +157,19 @@
   <ItemGroup>
     <ClInclude Include="main.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="textRender.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\.gitignore" />
     <None Include="..\DiscussionAndResult\DiscussionAndResult.md" />
     <None Include="..\README.md" />
     <None Include="fShader.glsl" />
     <None Include="fsText.glsl" />
+    <None Include="fTexture.glsl" />
     <None Include="vShader.glsl" />
     <None Include="vsText.glsl" />
+    <None Include="vTexture.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

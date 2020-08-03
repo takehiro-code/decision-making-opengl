@@ -338,4 +338,8 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+#user defined
 /OpenGLVS/test.cpp
+stb_image.h
+/data
