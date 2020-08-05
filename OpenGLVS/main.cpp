@@ -3,6 +3,7 @@
 
 const bool HW1 = false;
 const bool HW2 = true;
+const bool HW3 = true;
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -64,10 +65,9 @@ int main()
 
 
 		cout << "Press Enter to start HW2 problem 1 & 2 & 3 ..." << endl;
-		//cin.get();
+		cin.get();
 		hw2_problem4();
 		cout << endl << endl;
 	}
-
 
 }

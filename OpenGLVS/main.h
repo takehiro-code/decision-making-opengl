@@ -38,6 +38,7 @@ void hw2_problem123();
 void hw2_problem4();
 
 // user defined functions in opengl.cpp
+float normalize(float value, float minValue, float maxValue, float a, float b);
 int glinit(GLFWwindow*& window, int width, int height, const char* title); // creating windows and load glfw, glew
 void setupVAOVBO(GLuint VAO, GLuint VBO, vector<float> data); //setup of VAO, VBO only position
 void setupTextureVAOVBO(GLuint VAO, GLuint VBO, vector<float> data); // setup of VAO, VBO for position and texture

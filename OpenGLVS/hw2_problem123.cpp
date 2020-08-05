@@ -38,11 +38,6 @@ float gaussian1D(float x, float mean, float variance) {
 }
 
 
-float normalize(float value, float minValue, float maxValue, float a, float b) {
-    return (value - minValue) / (maxValue - minValue) * (b - a) + a; // normalize to [a, b] for drawing
-}
-
-
 float computeMean(vector<float> data) {
     float mean = 0.0f;
     for (int i = 0; i < data.size(); i++) {

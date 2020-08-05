@@ -1,6 +1,11 @@
 
 #include "main.h"
 
+float normalize(float value, float minValue, float maxValue, float a, float b) {
+    return (value - minValue) / (maxValue - minValue) * (b - a) + a; // normalize to [a, b] for drawing
+}
+
+
 int glinit(GLFWwindow*& window, int width, int height, const char* title) {
     // Init GLFW -- initilizaing GLFW library
     glfwInit();
@@ -45,6 +50,7 @@ int glinit(GLFWwindow*& window, int width, int height, const char* title) {
 
     return EXIT_SUCCESS;
 }
+
 
 void setupVAOVBO(GLuint VAO, GLuint VBO, vector<float> data) {
     glBindVertexArray(VAO);
