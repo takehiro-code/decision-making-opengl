@@ -495,10 +495,10 @@ void hw2_problem4() {
         tryAgain = false;
         cin.clear();
         cin.ignore(INT_MAX, '\n'); // flashing value
-        cout << "Now enter node number (Enter value only between 0 - 255): ";
+        cout << "Now enter node number (Enter value only between 0 - 9 or -1): ";
         cin >> chosenNodeNum;
         if (chosenNodeNum < -1 || chosenNodeNum > 9 || !cin.good()) {
-            cout << "Invalid value. Please Enter the R value between 0 - 255!: " << endl;;
+            cout << "Invalid value. Please Enter the R value between 0 - 9 or -1!: " << endl;;
             tryAgain = true;
         }
     } while (tryAgain);

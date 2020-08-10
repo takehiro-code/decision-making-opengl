@@ -37,6 +37,8 @@ void hw1_problem6();
 void hw2_problem123();
 void hw2_problem4();
 
+void hw3_problem123();
+
 // user defined functions in opengl.cpp
 float normalize(float value, float minValue, float maxValue, float a, float b);
 int glinit(GLFWwindow*& window, int width, int height, const char* title); // creating windows and load glfw, glew

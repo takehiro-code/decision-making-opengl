@@ -48,6 +48,9 @@
     <ClCompile Include="hw2_problem4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hw3_problem123.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

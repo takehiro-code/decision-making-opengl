@@ -2,7 +2,7 @@
 #include "main.h"
 
 const bool HW1 = false;
-const bool HW2 = true;
+const bool HW2 = false;
 const bool HW3 = true;
 
 #include <glm/glm.hpp>
@@ -58,10 +58,10 @@ int main()
 	if (HW2) {
 		cout << "HW2 Program starts ..." << endl;
 
-		//cout << "Press Enter to start HW2 problem 1 & 2 & 3 ..." << endl;
-		//cin.get();
-		//hw2_problem123();
-		//cout << endl << endl;
+		cout << "Press Enter to start HW2 problem 1 & 2 & 3 ..." << endl;
+		cin.get();
+		hw2_problem123();
+		cout << endl << endl;
 
 
 		cout << "Press Enter to start HW2 problem 1 & 2 & 3 ..." << endl;
@@ -69,5 +69,16 @@ int main()
 		hw2_problem4();
 		cout << endl << endl;
 	}
+
+	if (HW3) {
+		cout << "HW3 Program starts ..." << endl;
+
+		cout << "Press Enter to start HW3 problem 1 & 2 & 3 ..." << endl;
+		cin.get();
+		hw3_problem123();
+		cout << endl << endl;
+	}
+
+
 
 }
