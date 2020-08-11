@@ -1,8 +1,8 @@
 
 #include "main.h"
 
-const bool HW1 = false;
-const bool HW2 = false;
+const bool HW1 = true;
+const bool HW2 = true;
 const bool HW3 = true;
 
 #include <glm/glm.hpp>
@@ -64,9 +64,9 @@ int main()
 		cout << endl << endl;
 
 
-		cout << "Press Enter to start HW2 problem 1 & 2 & 3 ..." << endl;
+		cout << "Press Enter to start HW2 problem 4 & 5 ..." << endl;
 		cin.get();
-		hw2_problem4();
+		hw2_problem45();
 		cout << endl << endl;
 	}
 
@@ -78,6 +78,8 @@ int main()
 		hw3_problem123();
 		cout << endl << endl;
 	}
+
+	cout << "program ends..." << endl;
 
 
 

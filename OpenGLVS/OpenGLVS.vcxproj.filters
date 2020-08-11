@@ -45,10 +45,10 @@
     <ClCompile Include="hw2_problem123.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hw2_problem4.cpp">
+    <ClCompile Include="hw3_problem123.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hw3_problem123.cpp">
+    <ClCompile Include="hw2_problem45.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

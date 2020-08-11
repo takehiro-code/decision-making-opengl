@@ -216,11 +216,11 @@ void getVertices(Graph const &graph, int chosenNodeNum,
 
 
 
-int drawMap(Graph graph, int chosenNodeNum) {
+int drawMap(const Graph &graph, int chosenNodeNum) {
 
 
     GLFWwindow* window;
-    int EXIT_STAUTS = glinit(window, WIDTH, HEIGHT, "HW2 Problem 4: Burnaby Campus Map");
+    int EXIT_STAUTS = glinit(window, WIDTH, HEIGHT, "HW2 Problem 4 & 5: Burnaby Campus Map - Text Rendering fails");
     if (EXIT_STAUTS == EXIT_FAILURE) {
         return EXIT_FAILURE;
     }
@@ -279,11 +279,14 @@ int drawMap(Graph graph, int chosenNodeNum) {
     // set up  for allLineRed
     const int numLinesRed = allLineRed.size();
     vector<GLuint> lineRedVBOs(numLinesRed), lineRedVAOs(numLinesRed);
-    glGenVertexArrays(numLinesRed, &lineRedVAOs[0]);
-    glGenBuffers(numLinesRed, &lineRedVBOs[0]);
-    for (int i = 0; i < numLinesRed; i++) {
-        setupVAOVBO(lineRedVAOs[i], lineRedVBOs[i], allLineRed[i]);
+    if (chosenNodeNum != -1) {
+        glGenVertexArrays(numLinesRed, &lineRedVAOs[0]);
+        glGenBuffers(numLinesRed, &lineRedVBOs[0]);
+        for (int i = 0; i < numLinesRed; i++) {
+            setupVAOVBO(lineRedVAOs[i], lineRedVBOs[i], allLineRed[i]);
+        }
     }
+
 
     // game loop
     while (!glfwWindowShouldClose(window))
@@ -306,11 +309,14 @@ int drawMap(Graph graph, int chosenNodeNum) {
             glDrawArrays(GL_LINES, 0, allLine[i].size() / 3);
         }
 
-        // draw Red highlighted lines
-        for (int i = 0; i < numLinesRed; i++) {
-            glBindVertexArray(lineRedVAOs[i]);
-            shaderProgram.setColor("userDefinedColor", 1.0f, 0.0f, 0.0f, 1.0f);
-            glDrawArrays(GL_LINES, 0, allLineRed[i].size() / 3);
+
+        if (chosenNodeNum != -1) {
+            // draw Red highlighted lines
+            for (int i = 0; i < numLinesRed; i++) {
+                glBindVertexArray(lineRedVAOs[i]);
+                shaderProgram.setColor("userDefinedColor", 1.0f, 0.0f, 0.0f, 1.0f);
+                glDrawArrays(GL_LINES, 0, allLineRed[i].size() / 3);
+            }
         }
 
         // draw rectangle node
@@ -359,21 +365,28 @@ int drawMap(Graph graph, int chosenNodeNum) {
     glDeleteVertexArrays(numRects, &rectVAOs[0]);
     glDeleteBuffers(numRects, &rectVBOs[0]);
 
-    // for all rectangles (node)
+    // for all line
     glDeleteVertexArrays(numLines, &lineVAOs[0]);
     glDeleteBuffers(numLines, &lineVBOs[0]);
 
-    // for all rectangles (node)
-    glDeleteVertexArrays(numLinesRed, &lineRedVAOs[0]);
-    glDeleteBuffers(numLinesRed, &lineRedVBOs[0]);
+    if (chosenNodeNum != -1) {
+        // for all lines red 
+        glDeleteVertexArrays(numLinesRed, &lineRedVAOs[0]);
+        glDeleteBuffers(numLinesRed, &lineRedVBOs[0]);
+    }
+
 
 
     glfwTerminate();
     return 0;
 }
 
+// ----------------------------------------------------------------------------------------------
+// MAIN
+// ----------------------------------------------------------------------------------------------
 
-void hw2_problem4() {
+
+void hw2_problem45() {
 
 
     // vector of graph edges as per above diagram.
@@ -473,7 +486,7 @@ void hw2_problem4() {
 
     // print adjacency list representation of graph for debugging
     //printGraph(graph, N);
-
+    cout << "HW2 Problem 4 ..." << endl;
     cout << "Enter the integer number 0 - 9 for choosing a node." << endl;
     cout << "Residence (0)" << endl;
     cout << "Dining Hall (1)" << endl;
@@ -505,4 +518,9 @@ void hw2_problem4() {
 
     drawMap(graph, chosenNodeNum);
 
+
+    cout << "HW2 Problem 5 (Run out of time to do it) ..." << endl;
+    cout << "I live in Residence on campus, so we have the same background image." << endl;
+    drawMap(graph, -1);
+    // use dijkstra algroithm
 }

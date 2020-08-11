@@ -35,7 +35,7 @@ void hw1_problem5();
 void hw1_problem6();
 
 void hw2_problem123();
-void hw2_problem4();
+void hw2_problem45();
 
 void hw3_problem123();
 
