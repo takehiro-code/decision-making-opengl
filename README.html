@@ -1,0 +1,78 @@
+<h1 id="ensc482-decision-making">ENSC482-Decision-Making</h1>
+<p>Introduction to Decision Making in Engineering - 2020 Summer</p>
+<b>If you cannot run the program, please follow the development environment setup explained below. As I have already downloaded everything in the external
+    resources folder, you can just continue setting the paths in the visual studio properties only.</b>
+<h3 id="how-to-run-exe-file-important-">HOW TO RUN .EXE file - IMPORTANT!!</h3>
+<p>Since the way I coded of how I read the filepath of .glsl files, the OpenGLVS.exe file cannot run properly from the
+    x64/debug folder. You will need to copy this .exe file and place in the project directory of /OpenGLVS folder. I
+    will explain in the video of how run executable at HOW_TO_RUN_EXE_FILE.mp4.
+</p>
+
+<h3 id="how-to-run-exe-file-important-">File Structure</h3>
+<p> Another important video will be file_structure_IMPORTANT.mp4 that explains the structure of my files.</p>
+<ul>
+    <li>External Resources: 4 libraries included.</li>
+    <li>OpenGLVS/data: image and csv file of data are stored here.</li>
+    <li>OpenGLVS/DiscussionAndResult: DiscussionAndResult.html discusses the result of each question. There is also a markdown file but this is legacy file.</li>
+    <li>OpenGLVS/NarratedVideo: All the videos are stored here.</li>
+    <li>OpenGLVS/OpenGLVS: All the codes are included here with a .exe file.</li>
+    <li>OpenGLVS/x64: Don't worry about this folder. .exe file in this folder will not work. Copy the .exe and place in the OpenGLVS/OpenGLVS.</li>
+    <li>OpenGLVS/OpenGLVS.sln: Visual studio solution file. Open this to run visual studio.</li>
+    <li>OpenGLVS/.gitattributes and .gitignore: For my own convenience for git usage.</li>
+    <li>OpenGLVS/README.html: This file you are reading.</li>
+    <li>OpenGLVS/README_old.md: Legacy file.</li>
+</ul>
+
+<h3 id="development-environment">Development Environment</h3>
+<ul>
+    <li>GLFW version: 3.3.2 (precompiled binaries)</li>
+    <li>GLEW version: 2.1.0 (precompiled binaries)</li>
+    <li>glm version: 0.9.9.8 (header file only)</li>
+    <li>FreeType version: 2.10.2 (compile on my own from visual studio 2019)</li>
+    <li>stb<em>image.h (Single header file. Version 2.26 at the time of Aug 2020. I downloaded this single header file
+            directly from online and place it in the project directory.)</em></li>
+    <li>Visual Studio 2019 Community Version with x64</li>
+</ul>
+<h3 id="extension-optional-">Extension (Optional):</h3>
+<p>Install Markdown Editor Extension in the Visual Studio to modify/preview the markdown file.</p>
+<h3 id="instruction-setup-">Instruction Setup:</h3>
+<p><strong>glfw, glew setup:</strong>
+    Follow this youtube: <a
+        href="https://www.youtube.com/watch?v=gCkcP0GcCe0">https://www.youtube.com/watch?v=gCkcP0GcCe0</a></p>
+<p><strong>glm setup:</strong></p>
+<ol>
+    <li>Download zip file from <a href="https://github.com/g-truc/glm/tags">https://github.com/g-truc/glm/tags</a></li>
+    <li>Extract it to any place as a folder &quot;glm/&quot;.</li>
+    <li>In visual studio, right click the project, go to properties, go to C++, and then General. Then, edit the
+        Additional Include Directories and add the path to the glm folder &quot;YOUR_SOME_PATH/glm&quot;.</li>
+</ol>
+<p><strong>FreeType setup:</strong></p>
+<ol>
+    <li>Download .tar.gz file from <a
+            href="https://download.savannah.gnu.org/releases/freetype/">https://download.savannah.gnu.org/releases/freetype/</a>
+    </li>
+    <li>Extract it to any place as a folder &quot;FreeType/&quot;. Name of the folder can be anything.</li>
+    <li>Compile the library: Go to freetype directory, open the solution file in builds/windows/vc2010 with Visual
+        Studio. Choose Release and x64 (if you are using 64 bit windows) and build it to get *.lib files.</li>
+    <li>In visual studio, right click the project, go to properties, go to C++, and then General. Then, edit the
+        Additional Include Directories and add the path to the glm folder &quot;YOUR_SOME_PATH/FreeType/include&quot;.
+    </li>
+    <li>Continuing in Visual Studio, go to Linker, and then General. Then, edit the Additional Library Directories and
+        add the path to the FreeType folder &quot;YOUR_SOME_PATH/FreeType/objs/x64/Release&quot;.</li>
+    <li>Then go to Linker input, edit the Additional Dependencies, and add &quot;freetype.lib&quot;. Make sure to check
+        the library name from the built path &quot;YOUR_SOME_PATH/FreeType/objs/x64/Release&quot; since the library
+        could be different for different version.</li>
+</ol>
+<p><strong>stb_image.h:</strong>
+    Go to <a
+        href="https://github.com/nothings/stb/blob/master/stb_image.h">https://github.com/nothings/stb/blob/master/stb_image.h</a>
+    and download the header file and place into your own project directory. No setting of the project needed.
+    Alternatively, you can place this outside of project directory and cofigure your project setting by going to project
+    setting in VS, go to C++, General, Include Additional Library
+    and add the path to this header file, which is the same procedure as glm setup.</p>
+<h3 id="instruction-help-">Instruction Help:</h3>
+<p>GLFW and GLEW: <a href="https://www.youtube.com/watch?v=gCkcP0GcCe0">https://www.youtube.com/watch?v=gCkcP0GcCe0</a>
+    glm: <a href="https://www.youtube.com/watch?v=6nGpoY-L2Xk">https://www.youtube.com/watch?v=6nGpoY-L2Xk</a>
+    FreeType: <a
+        href="https://medium.com/@jackklpan/using-freetype-in-visual-studio-3ac321ca4cb9">https://medium.com/@jackklpan/using-freetype-in-visual-studio-3ac321ca4cb9</a>
+</p>

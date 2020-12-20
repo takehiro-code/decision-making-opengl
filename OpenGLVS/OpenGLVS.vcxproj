@@ -153,7 +153,6 @@
     <ClCompile Include="hw3_problem123.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="opengl.cpp" />
-    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
@@ -163,8 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
-    <None Include="..\DiscussionAndResult\DiscussionAndResult.md" />
-    <None Include="..\README.md" />
     <None Include="fShader.glsl" />
     <None Include="fsText.glsl" />
     <None Include="fTexture.glsl" />

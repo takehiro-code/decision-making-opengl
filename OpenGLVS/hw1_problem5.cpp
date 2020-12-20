@@ -183,7 +183,7 @@ void hw1_problem5() {
 	pair<string, string> result = PD.solve();
 	PD.printInfo();
 
-	if (result.second == "None", result.second == "None") {
+	if (result.first == "None", result.second == "None") {
 		cout << "No mutual best response found" << endl;
 	}
 	else {

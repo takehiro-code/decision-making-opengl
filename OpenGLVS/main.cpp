@@ -13,7 +13,7 @@ const bool HW3 = true;
 #include FT_FREETYPE_H
 
 
-// The MAIN function that runs from HW1 problem 1 to problem 6
+// The MAIN function that runs from HW1  to HW3
 int main()
 {
 	if (HW1) {

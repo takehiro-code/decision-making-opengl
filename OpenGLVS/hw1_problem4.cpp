@@ -48,6 +48,7 @@ int drawDecisonMatrix() {
         0.33f, -1.0f, 0.0f,
         0.33f, 1.0f, 0.0f,
 
+        // slanted line
         -1.0f, 1.0f, 0.0f,
         -0.33f, 0.33f, 0.0f
     };
@@ -168,7 +169,7 @@ int game(int betValue, int betAmount) {
 
 
 
-int drawDecisonTree(int netAmount) {
+int drawDecisonTree(int netAmount, int betAmount) {
 
     GLFWwindow* window;
     int EXIT_STAUTS = glinit(window, WIDTH, HEIGHT, "HW1 Problem 4 (b): Formalized Decision Tree with Bet Amount");
@@ -256,7 +257,7 @@ int drawDecisonTree(int netAmount) {
             fontSize, glm::vec3(0.5, 0.8f, 0.2f));
 
 
-        textRenderProgram.RenderText("Return: $ " + to_string(netAmount),
+        textRenderProgram.RenderText("Return: $ " + to_string(35 * betAmount),
             normalize(0.65f, -1.0f, 1.0f, ax, bx),
             normalize(0.6f, -1.0f, 1.0f, ay, by),
             fontSize, glm::vec3(0.5, 0.8f, 0.2f));
@@ -328,17 +329,17 @@ void hw1_problem4() {
     returnAmount = game(betValue, betAmount);
     netAmount = returnAmount - betAmount;
 
-    if (netAmount > 0) {
-        cout << "Win! You earned $ " << netAmount << " (net amount after subtracting bet amount)" << endl;
+    if (returnAmount > 0) {
+        cout << "Win! You earned $ " << returnAmount << " (net amount after subtracting bet amount)" << endl;
     }
     else if (netAmount == 0) {
-        cout << "No bet. You earned $ " << netAmount << " (net amount after subtracting bet amount)" << endl;
+        cout << "No bet. You earned $ " << 0 << " (net amount after subtracting bet amount)" << endl;
     }
     else {
-        cout << "Lost... Your lost $ " << -netAmount << " (net amount after subtracting bet amount)" << endl;
+        cout << "Lost... Your lost $ " << -(returnAmount - betAmount) << " (net amount after subtracting bet amount)" << endl;
     }
 
     cout << "(b) Visualizing the decision tree ..." << endl;
-    drawDecisonTree(netAmount);
+    drawDecisonTree(netAmount, betAmount);
     cout << "HW1 Problem 4 ends ..." << endl;
 }

@@ -220,7 +220,7 @@ int drawHW3P1(vector<float> data1, vector<float> data2) {
             else if (i == 2) {
                 shaderProgram.setColor("userDefinedColor", 0.0f, 1.0f, 0.0f, 1.0f); // green
             }
-            else { // needs a better method of dynamically coloring for more than 4 clusters
+            else { // needs a better method of dynamically coloring for more than 3 clusters
                 float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                 float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                 float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);

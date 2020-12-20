@@ -1,6 +1,10 @@
 # ENSC482-Decision-Making
 Introduction to Decision Making in Engineering - 2020 Summer
 
+##### HOW TO RUN .EXE file - IMPORTANT!!
+Since the way I coded of how I read the filepath of .glsl files, the OpenGLVS.exe file cannot run properly from the x64/debug folder. You will need to copy this .exe file and place in the project directory of /OpenGLVS folder. I will explain in the video of how run executable at HOW_TO_RUN_EXE_FILE.mp4.
+
+
 ##### Development Environment
 - GLFW version: 3.3.2 (precompiled binaries)
 - GLEW version: 2.1.0 (precompiled binaries)

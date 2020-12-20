@@ -1,44 +1,119 @@
-<h1 id="hw-discussion-and-results">HW Discussion and Results</h1>
+﻿<h1 id="hw-discussion-and-results">HW Discussion and Results</h1>
+<style>
+    img {
+        width: 800px;
+    }
+</style>
+
 <h3 id="hw1">HW1</h3>
+<p><strong>Problem 1</strong></p>
+<p>Three basic graphic model shown below.</p>
+<p><img src="hw1_problem1.PNG" alt="ScreenShot"></p>
+<p><strong>Problem 2</strong></p>
+<p>Example 1 shown below.
+    Also, example 2 stack that has 4 different user input R values before sort is shown.</p>
+<p><img src="hw1_problem2_exmaple2_beforeSort.PNG" alt="ScreenShot"></p>
+<p>After sort, you have this.</p>
+<p><img src="hw1_problem2_exmaple2_afterSort.PNG" alt="ScreenShot"></p>
+<p><strong>Problem 3</strong></p>
+<p><img src="hw1_problem3.PNG" alt="ScreenShot"></p>
+<p><strong>Problem 4</strong></p>
+<p>The problem is formalized in the following decison matrix.</p>
+<p><img src="hw1_problem4_decisionMatrix.PNG" alt="ScreenShot"></p>
+<p>The decision tree that depends on the user choice of value and bet amount will be follows. In this case, the bet
+    amount is $100 for
+    choosing value 20.</p>
+<p><img src="hw1_problem4_decisionTree.PNG" alt="ScreenShot"></p>
+<p><strong>Problem 5</strong></p>
+<p><img src="hw1_problem5.PNG" alt="ScreenShot"></p>
+<p><strong>Problem 6</strong></p>
+<p><img src="hw1_problem6.PNG" alt="ScreenShot"></p>
 <h3 id="hw2">HW2</h3>
 <p><strong>Problem 1</strong>
-Overlay 1D gaussian distribution on the histogram for the two datasets latitude and longitude are shown below.
-We set the number of bin to <strong>30</strong> and used the entire data samples <strong>14092</strong> points. The data is taken from 2001-01-02 to 2018-11-27 for 18 years.
-<img src="hw2_problem1_latitude.PNG" alt="ScreenShot">
-<img src="hw2_problem1_longitude.PNG" alt="ScreenShot">
-For the result for dataset latitude, the histogram is following the gaussian shape and the mean value of latitude is approximately the highest frequency of the histogram and is <strong>37.41 degree</strong>.
-Similarly for the longitude dataset, the mean value (approximately highest frequency) is <strong>142.98 degree</strong>.
-For the location (latitude, longitude) = (37.41, 142.98) is shown below from online <a href="https://getlatlong.net/">https://getlatlong.net/</a>.
-<img src="hw2_problem1_location.PNG" alt="ScreenShot">
-This shows that the location near the north east of tokyo has higher probability of earthquake to occur based on the 18 years of data.</p>
-<p>Computing the Bhatacharrya Coefficient, we got <strong>0.915415</strong>. This value is close to 1, indicating that the two datasets of latitude and longitude is similar in shape.</p>
-<p>In case, I will also show the result of 3rd variable as following.
-<img src="hw2_problem1_depth.PNG" alt="ScreenShot"></p>
+    Overlay 1D gaussian distribution on the histogram for the two datasets latitude and longitude are shown below.
+    We set the number of bin to <strong>30</strong> and used the entire data samples <strong>14092</strong> points. The
+    data is taken from 2001-01-02 to 2018-11-27 for 18 years.</p>
+<p><img src="hw2_problem1_latitude.PNG" alt="ScreenShot"></p>
+<p><img src="hw2_problem1_longitude.PNG" alt="ScreenShot"></p>
+<p>For the result for dataset latitude, the histogram is following the gaussian shape and the mean value of latitude is
+    approximately the highest frequency of the histogram and is <strong>37.41 degree</strong>.
+    Similarly for the longitude dataset, the mean value (approximately highest frequency) is <strong>142.98
+        degree</strong>.
+    For the location (latitude, longitude) = (37.41, 142.98) is shown below from online <a
+        href="https://getlatlong.net/">https://getlatlong.net/</a>.</p>
+<p><img src="hw2_problem1_location.PNG" alt="ScreenShot"></p>
+<p>This shows that the location near the north east of tokyo has higher probability of earthquake to occur based on the
+    18 years of data.</p>
+<p>Computing the Bhatacharrya Coefficient, we got <strong>0.915415</strong>. This value is close to 1, indicating that
+    the two datasets of latitude and longitude is similar in shape.</p>
+<p>In case, I will also show the result of 3rd variable as following.</p>
+<p><img src="hw2_problem1_depth.PNG" alt="ScreenShot"></p>
 <p><strong>Problem 2</strong></p>
 <p>Continuing from the problem 1, I defind the 3 variables as:</p>
 <ul>
-<li>Latitude (variable 1)</li>
-<li>Longitude (variable 2)</li>
-<li>Depth (variable 3)</li>
+    <li>Latitude (variable 1)</li>
+    <li>Longitude (variable 2)</li>
+    <li>Depth (variable 3)</li>
 </ul>
 <p>Input dataset is attached in the same project directory OpenGLVS.
-The scatter matrix from the 3 variables are shown below. Note that my program can input any number of variables, so 
-it can be n by n scatter matrix.
-<img src="hw2_problem2_scatterMatrix.PNG" alt="ScreenShot">
-As you can see that the scatter plot between the data 1 (latitude) and data 2 (longitude) are showng some strength
-on the straight line with a positive direction. This is also shown in the correlation value
-between data 1 and data 2, showing high value of correlation.</p>
-<p>On the other hand, as for the case for the data 1/data 2 (latitude/longitude) and data 3 (depth) are showing very weak
-strength of straightline as also can be shown in the low correlation value.</p>
+    The scatter matrix from the 3 variables are shown below. Note that my program can input any number of variables, so
+    it can be n by n scatter matrix.</p>
+<p><img src="hw2_problem2_scatterMatrix.PNG" alt="ScreenShot"></p>
+<p>As you can see that the scatter plot between the data 1 (latitude) and data 2 (longitude) are showng some strength
+    on the straight line with a positive direction. This is also shown in the correlation value
+    between data 1 and data 2, showing high value of correlation.</p>
+<p>On the other hand, as for the case for the data 1/data 2 (latitude/longitude) and data 3 (depth) are showing very
+    weak
+    strength of straightline as also can be shown in the low correlation value.</p>
 <p>This concludes that latitude and longitude of earthquake that occurs closely related (which is obvious since
- both information represents the geographical information), but the there seems no relation between the 
-geographical informatoion (latitude or longitude) and the depth.</p>
+    both information represents the geographical information), but the there seems no relation between the
+    geographical informatoion (latitude or longitude) and the depth.</p>
 <p><strong>Problem 3</strong>
-Using the Least-Squares Regression Lines method (1st order), the regression is layed on the scatter matrix as shown below.
-<img src="hw2_problem3_scatterMatrix_Regression.PNG" alt="ScreenShot"></p>
+    Using the Least-Squares Regression Lines method (1st order), the regression is layed on the scatter matrix as shown
+    below.</p>
+<p><img src="hw2_problem3_scatterMatrix_Regression.PNG" alt="ScreenShot"></p>
 <p>Looking at the slope of plot 1-2, plot 1-3, and plot 2-3, the slope value in plot 1-2 (latitude vs longitude) shows
-stronger linearity since the value is closer to 1 while slope values in plot 1-3 is very low (approximiately flat).
-plot 2-3 (longitude vs depth) shows slope of -1.27, which could be caused by the very different scale of each variable
- that causes the unstable slope value. The scale of depth is [0, 683.359] while the scale of longitude is [124.29, 158.82].
- The scale of depth (y axis) is much larger than the longitude (x axis), so the slope fluctuate a lot in the vertical direction, 
-causing the slope to be deviate from 0.</p>
+    stronger linearity since the value is closer to 1 while slope values in plot 1-3 is very low (approximiately flat).
+    plot 2-3 (longitude vs depth) shows slope of -1.27, which could be caused by the very different scale of each
+    variable
+    that causes the unstable slope value. The scale of depth is [0, 683.359] while the scale of longitude is [124.29,
+    158.82].
+    The scale of depth (y axis) is much larger than the longitude (x axis), so the slope fluctuate a lot in the vertical
+    direction,
+    causing the slope to be deviate from 0.</p>
+<p><strong>Problem 4</strong></p>
+<p>The result of the image shown below as an example choosing the MBC location which is node number 5.</p>
+<p><img src="hw2_problem4.PNG" alt="ScreenShot"></p>
+<p><strong>Problem 5</strong></p>
+<p><img src="hw2_problem5.PNG" alt="ScreenShot"></p>
+<h3 id="hw3">HW3</h3>
+<p><strong>Problem 1</strong></p>
+<p>I used the same dataset from the hw2 and utilized k-means clustering to perform clutsering of 3 clusters.
+    My program works in any number of clusters, so I can even cluster more than 3 clusters. Also, my program was able
+    animate the every iteration, so you can test by running the program.
+    Note that I have chosen the fixed iteration as 1000 and step size as 1.
+    The following example is the 50 samples case between latitude and longitude data. </p>
+<p><img src="hw3_problem1_clustered_50samples.PNG" alt="ScreenShot"></p>
+<p>Similarly for the 14092 samples case, you will get the following.</p>
+<p><img src="hw3_problem1_clustered_14092samples.PNG" alt="ScreenShot"></p>
+<p>As you can see that the k-means clustering works fearly well for any number of samples. </p>
+<p><strong>Problem 2</strong></p>
+<p>For the problem2, I performed a classification drawing the decision boundary using a perceptron algorithm that
+    utilizes the reward and punishment concept.
+    I tested my program with the lecture example and was able to get the weight coefficient correct as w0 = -2, w1 = 0,
+    w2 = 1.</p>
+<p>Now I test on my own dataset using the 50 sample case and the result is as follows.
+    As you can see that I was able to classify fairly well on the 50 sample case.</p>
+<p><img src="hw3_problem2_classification_50samples.PNG" alt="ScreenShot"></p>
+<p>However, if I test on the 14092 samples, it didn&#39;t really work well.
+    I conclude that the perceptron algorithm that utilizes the Reward-Punishment concept is not accurate in a large
+    number of samples.
+    This could be because each cluster is too close to each other and it was difficult to draw a decision boundary
+    utilizing the Reward-Punishment concept alone,
+    so it will need a better approach.</p>
+<p><img src="hw3_problem2_classification_14092samples.PNG" alt="ScreenShot"></p>
+<p><strong>Problem 3</strong></p>
+<p>My idea is that perform calculation of:</p>
+<p>Error Percentage = averageOfEachCluster( abs (# of classified points - # of cluster points) / # of cluster points *
+    100 )</p>
+<p>Or using the confusion matrix, which will require further study.</p>

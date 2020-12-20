@@ -36,9 +36,6 @@
     <ClCompile Include="hw1_problem6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="opengl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -71,8 +68,6 @@
     <None Include="fsText.glsl" />
     <None Include="vShader.glsl" />
     <None Include="vsText.glsl" />
-    <None Include="..\DiscussionAndResult\DiscussionAndResult.md" />
-    <None Include="..\README.md" />
     <None Include="vTexture.glsl" />
     <None Include="fTexture.glsl" />
     <None Include="..\.gitignore" />
